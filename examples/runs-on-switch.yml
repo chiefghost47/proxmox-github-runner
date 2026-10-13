@@ -1,0 +1,31 @@
+# Drop-in for an existing workflow: one repository variable decides where the job runs.
+#
+#   RUNNER unset      -> ubuntu-latest (GitHub-hosted), exactly as before
+#   RUNNER=proxmox    -> the self-hosted runner carrying the label "proxmox"
+#
+# Set it under Settings -> Secrets and variables -> Actions -> Variables.
+# Flip it back to move every job to GitHub-hosted again without touching the workflow.
+#
+# Note on a matrix: an expression works inside matrix values too, so a Linux leg can
+# follow the variable while a Windows leg stays GitHub-hosted:
+#
+#   matrix:
+#     os:
+#       - ${{ vars.RUNNER || 'ubuntu-latest' }}
+#       - windows-latest
+
+name: tests
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - run: ./run-tests.sh

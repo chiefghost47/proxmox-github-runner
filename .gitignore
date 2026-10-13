@@ -1,0 +1,17 @@
+inputs.env
+*.env
+!inputs.env.example
+known_hosts
+logs/
+*.pat
+*.token
+# credential and key material that the build creates or reads
+.ci-runner-pat*
+.gh-runner-pat*
+.runner-registrations*
+*.pem
+*.key
+id_*
+*-admin
+*-admin.pub
+*.log

@@ -1,0 +1,10 @@
+# Extends the default gitleaks rules. Anything that looks like a token or key fails CI.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "documented placeholders"
+regexes = [
+  '''ghp_x{20,}''',
+  '''github_pat_x{20,}''',
+]

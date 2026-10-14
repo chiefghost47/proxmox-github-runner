@@ -6,7 +6,7 @@
 # It changes nothing on the Proxmox host, the firewall, GitHub or this PC.
 # =============================================================================
 set -uo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/.." || exit 2
 [[ -f inputs.env ]] || { echo "inputs.env missing (copy inputs.env.example)"; exit 2; }
 # shellcheck disable=SC1091
 . ./inputs.env

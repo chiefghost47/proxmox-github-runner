@@ -4,8 +4,8 @@ A GitHub Actions self-hosted runner on a Proxmox VM, built into its own isolated
 read-only preflight that catches isolation mistakes before anything is created, and a one-variable
 switch that moves workflows between GitHub-hosted and self-hosted runners.
 
-Built for a homelab where the runner must never reach the rest of the network, and where a
-mistake in the firewall should fail the build, not be discovered later.
+Built for a self-hosted security stack where the runner must never reach the rest of the network,
+and where a mistake in the firewall should fail the build, not be discovered later.
 
 ![ci](https://github.com/chiefghost47/proxmox-github-runner/actions/workflows/ci.yml/badge.svg)
 
